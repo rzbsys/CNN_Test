@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNN 인식기</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cnn.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+    <img src="{{url_for('static', filename='img/settings.svg')}}" alt="설정버튼" , class="set-btn">
+    <div class="setting">
+        <div class="top-set"></div>
+        <div style="height: 10px;"></div>
+        <label class="rem">추천 수</label><br>
+        <input type="number" placeholder="10" id="NUM"><br>
+
+        <label class="rem">문장 길이</label><br>
+        <input type="number" placeholder="10" id="LEN"><br>
+        <button id="Set">설정</button>
+    </div>
+    <div class="load_back" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+        <h1><span class="t1">CNN</span> 인식기<span class="by">BYㅈㅁㄱ</span></h1>
+    </div>
+
+    <header oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+        <div class="title"><span class="t1">CNN</span> 인식기</div>
+    </header>
+
+
+    <div class="context" id="Context" oncontextmenu="return false" ondragstart="return false"
+        onselectstart="return false">
+        <div>
+            <h2 class="te-con">전처리 전</h2>
+            <div class="con-img">
+                <img src="{{url_for('static', filename='img/user.svg')}}" style="filter: invert(0.9);" class="re-img"
+                    id="Input">
+            </div><br>
+            <label for="File_Upload" class="img-btn">파일 업로드</label>
+            <input type="file" id="File_Upload" accept="image/png, image/jpeg" onchange="loadFile(this)">
+        </div>
+        <div style="line-height: calc(100vh - 60px - 4vw); text-align: center;">
+            <img src="{{url_for('static', filename='img/right-arrow.svg')}}" class="r-arr">
+        </div>
+        <div>
+            <h2 class="te-con">전처리 후</h2>
+            <div class="con-img">
+                <img src="{{url_for('static', filename='img/user.svg')}}" style="filter: invert(0.9);"
+                    id="Pre_Processing" class="re-img">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="inform">
+        <div class="load" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+            <img src="{{url_for('static', filename='img/alert.svg')}}" alt="load" width="60px">
+            <h2>이미지를<br>업로드 해주세요.</h2>
+        </div>
+
+        <div class="server" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+            <img src="{{url_for('static', filename='img/alert.svg')}}" alt="load" width="60px">
+            <h2>서버 대기중</h2>
+        </div>
+
+        <div class="fail" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+            <img src="{{url_for('static', filename='img/alert.svg')}}" alt="load" width="60px">
+            <h2>서버 응답 실패</h2>
+            <h2 id="ecode" style="color: red;">오류 코드</h2>
+        </div>
+
+
+        <div class="rec" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+            <!--Add Point-->
+        </div>
+    </div>
+</body>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
+<script src="{{url_for('static', filename='js/cnn.js')}}"></script>
+
+</html>
